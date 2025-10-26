@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday!!!</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Disable scrolling */
+      height: 100%;
+    }
+    .section {
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+    }
+    .section.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .fade-up {
+      animation: fadeUp 3s ease-in-out forwards;
+    }
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .button-appear {
+      animation: fadeInButton 1s forwards;
+    }
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .gift-box {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+    .gift-message {
+      display: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #cc5058;
+      animation: messageFadeIn 1s forwards;
+    }
+    @keyframes messageFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    /* Getar pada kotak kado */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-rose-100 to-white font-sans">
+  <!-- Musik -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="Music/Blue.mp3" type="audio/mp3">
+    Your browser doesn’t support audio.
+  </audio>
+
+  <audio id="trumpetSound" src="Music/horn.mp3"></audio>
+
+  <!-- Button Musik Floating -->
+  <button id="musicButton" onclick="toggleMusic()"
+    class="select-none fixed top-4 right-4 bg-rose-300 hover:bg-rose-400 text-white py-2 px-4 rounded-full font-bold shadow-lg z-50 transition transform hover:scale-105">
+    Music: ON 🎶
+  </button>
+
+  <!-- Section 1 -->
+  <div id="section1" class="section active bg-gradient-to-b from-pink-200 to-white">
+    <h1 id="textArea" class="select-none text-3xl lg:text-5xl font-bold text-rose-500 mb-6"></h1>
+    <div id="nextButton" class="hidden">
+      <p class="text-sm text-center text-rose-400 mb-3">*saran aku diupin aja musiknya hehe 🎶</p>
+      <button onclick="nextSection()" class="select-none bg-rose-400 hover:bg-rose-500 text-white py-3 px-8 rounded-full font-bold transition transform hover:scale-105 button-appear">
+        Mulai 🎁
+      </button>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div id="section2" class="section bg-white">
+    <h2 id="giftTitle" class="select-none text-4xl font-bold text-rose-600 mb-4">Pencet kadonya!</h2>
+    <div id="giftBox" class="gift-box">
+        <span class="select-none text-white font-bold text-9xl">🎁</span>
+    </div>
+      
+    <div id="giftArea" class="hidden flex flex-col items-center mt-6">
+      <div class="relative flex items-center justify-center">
+        <div id="slider" class="w-64 h-64 overflow-hidden rounded-lg shadow-lg shadow-[#f5c9c9] bg-gray-100 relative">
+          <img id="slideImage" src="" draggable="false" class="select-none w-full h-full object-cover" alt="Slide">
+        </div>
+      </div>
+    </div>
+      
+    <div id="giftMessage" class="select-none gift-message mt-6">
+    	"Happy birthday Syasyaa"
+    </div>
+      
+    <button id="nextSectionButton" onclick="nextSection()" class="select-none hidden mt-8 bg-rose-400 hover:bg-rose-500 text-white py-3 px-6 rounded-full font-bold transition transform hover:scale-105">
+        Next ➡️
+    </button>
+      
+  </div>
+  
+
+  <!-- Section 3: Ucapan -->
+  <div id="section3" class="section bg-gradient-to-t from-white to-pink-100">
+    <h2 class="select-none text-xl lg:text-3xl font-bold text-rose-600 mb-6">Pesan Rahasia 💌</h2>
+    <p class="select-none text-sm text-rose-500 max-w-2xl mb-8">
+	  Hari ini tuh hari spesial kamuu, dan aku bener-bener seneng bisa jadi salah satu orang yang ngucapin duluan heheh. Aku gak tau gimana cara jelasinnyaa, tapi kamu tuh selalu punya cara buat bikin hari-hari aku jadi lebih seru gitu. Aku bersyukur banget bisa deket sama kamu, bisa denger cerita-cerita kamu, dan bisa ada di momen-momen kecil bareng kamu.
+    <br>
+    <br>
+	  Aku harap tahun ini bawa kamu banyak hal baik buat kamuu dan hal yang kamu impikan semoga bisa kecapaii. aku selalu peduli, selalu bangga, dan selalu ada buat kamu, kapan pun kamu butuh hehe
+	  <br>
+	  <br>
+	  Aku sayang kamu meisyaaa... 
+    </p>
+    <button onclick="nextSection()" class="select-none bg-rose-400 hover:bg-rose-500 text-white py-3 px-6 rounded-full font-bold transition transform hover:scale-105">
+		Selesai 🎂
+    </button>
+  </div>
+
+  <!-- Section 4: Penutup -->
+  <div id="section4" class="section bg-white">
+    <h2 class="select-none text-3xl lg:text-5xl font-bold text-rose-500 mb-6">🎈 Terima Kasih! 🎈</h2>
+    <p class="select-none text-xl lg:text-2xl text-rose-400 mb-8">Semoga hari ini kamu selalu senyum karna senyum kamu cantik :))</p>
+    <button onclick="location.reload()" class="mb-6 bg-rose-400 hover:bg-rose-500 text-white py-3 px-6 rounded-full font-bold transition transform hover:scale-105">
+		Ulang lagi 🔄
+    </button>
+    <h1 class="text-rose-400">~ Made by N, with all my heart! ~</h1>
+  </div>
+
+  <script>
+    let currentSection = 1;
+    const totalSections = 4;
+    const sentences = [
+      "Happy Birthday Meisyaaa!",
+      "Hari ini hari special kamu!✨",
+      "Semoga kamu seneng hari iniii.💖"
+    ];
+    let sentenceIndex = 0;
+  
+    function showText() {
+      const textArea = document.getElementById("textArea");
+      textArea.textContent = sentences[sentenceIndex];
+      textArea.classList.add('fade-up');
+      sentenceIndex++;
+  
+      if (sentenceIndex < sentences.length) {
+        setTimeout(() => {
+          textArea.classList.remove('fade-up');
+          showText();
+        }, 3000);
+      } else {
+        document.getElementById("nextButton").classList.remove("hidden");
+      }
+    }
+  
+    function nextSection() {
+      const current = document.getElementById(`section${currentSection}`);
+      current.classList.remove('active');
+  
+      currentSection++;
+      if (currentSection > totalSections) currentSection = 1;
+  
+      const next = document.getElementById(`section${currentSection}`);
+      setTimeout(() => next.classList.add('active'), 100);
+    }
+  
+    // ========================
+    // GIFT INTERAKTIF & SLIDER
+    // ========================
+    let clickCount = 0;
+	const giftTitle = document.getElementById("giftTitle");
+	const trumpetSound = document.getElementById("trumpetSound");
+    const giftBox = document.getElementById("giftBox");
+    const giftMessage = document.getElementById("giftMessage");
+    const giftArea = document.getElementById("giftArea");
+    const nextSectionButton = document.getElementById("nextSectionButton");
+  
+    const slideImage = document.getElementById("slideImage");
+    const images = [
+      "img/gift.png"
+    ];
+    let currentImage = 0;
+  
+    function showSlide(index) {
+      slideImage.src = images[index];
+    }
+  
+    function prevImage() {
+      currentImage = (currentImage - 1 + images.length) % images.length;
+      showSlide(currentImage);
+    }
+  
+    function nextImage() {
+      currentImage = (currentImage + 1) % images.length;
+      showSlide(currentImage);
+    }
+  
+    giftBox.onclick = () => {
+		clickCount++;
+		if (clickCount === 3) {
+			giftBox.style.display = "none";
+			giftMessage.style.display = "block";
+			giftArea.classList.remove("hidden");
+			nextSectionButton.classList.remove("hidden");
+			giftTitle.style.display = "none";
+			trumpetSound.play();
+			showSlide(currentImage);
+		} else {
+			giftBox.classList.add("shake");
+			setTimeout(() => {
+			giftBox.classList.remove("shake");
+			}, 200);
+		}
+	};
+
+  
+    // Musik control
+    let musicPlaying = true;
+    const bgMusic = document.getElementById('bgMusic');
+    const musicButton = document.getElementById('musicButton');
+
+    // Mainkan musik saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+      bgMusic.play().catch(err => {
+      console.warn('Autoplay gagal:', err);
+      musicPlaying = false;
+      musicButton.textContent = 'Music: OFF 🎶';
+      });
+    });
+
+    function toggleMusic() {
+      if (musicPlaying) {
+      bgMusic.pause();
+      musicButton.textContent = 'Music: OFF 🎶';
+      } else {
+      bgMusic.play();
+      musicButton.textContent = 'Music: ON 🎵';
+      }
+      musicPlaying = !musicPlaying;
+    }
+
+      window.onload = showText;
+  </script>
+  
+</body>
+</html>
